@@ -217,7 +217,7 @@ module execute_stage (
       rd_data_reg_out              <= 32'b0;
       instruction_reg_out          <= '0;
       status_forwards_out          <= pipeline_status::BUBBLE;
-      forwarding_out               <= '0;
+ //     forwarding_out               <= '0;
       next_program_counter_reg_out <= 32'b0;
 
     end else begin
