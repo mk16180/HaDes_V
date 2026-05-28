@@ -192,6 +192,14 @@ module decode_stage (
                   status_forwards_out     <= pipeline_status::ILLEGAL_INSTRUCTION;
                   program_counter_reg_out <= program_counter_in;
 
+                end else if (instruction_decoded_out.op == op::WFI || instruction_decoded_out.op == op::FENCE) begin
+                  // WFI and FENCE will be treated as NOP
+                  status_forwards_out     <= pipeline_status::VALID;
+                  program_counter_reg_out <= program_counter_in;
+                  instruction_reg_out     <= instruction::NOP;
+                  rs1_data_reg_out        <= '0;
+                  rs2_data_reg_out        <= '0;
+
                 end else begin
                   status_forwards_out     <= pipeline_status::VALID;
                   program_counter_reg_out <= program_counter_in;
